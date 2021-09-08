@@ -1,7 +1,7 @@
 import ReactMapGL, { Marker, Popup } from 'react-map-gl';
 import { useState } from "react";
 import { getCenter } from 'geolib';
-
+import { LocationMarkerIcon } from '@heroicons/react/outline'
 
 function Map({ searchResults }) {
 
@@ -38,11 +38,11 @@ const [viewport, setViewport] = useState({
                     <Marker
                         longitude={result.long}
                         latitude={result.lat}
-                        offsetLeft={-20}
-                        offsetTop={-10}
+                        offsetLeft={0}
+                        offsetTop={0}
                     >
                         <p onClick={() => setSelectedLocation(result)} className="cursor-pointer text-2xl animate-bounce">
-                            🌊
+                            <LocationMarkerIcon className="h-6 text-red-500"/>
                         </p>
                     </Marker>
 

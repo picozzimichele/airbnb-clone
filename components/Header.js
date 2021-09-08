@@ -8,8 +8,6 @@ import { useMediaQuery } from "@react-hook/media-query";
 import 'react-date-range/dist/styles.css'; // main style file
 import 'react-date-range/dist/theme/default.css'; // theme css file
 
-
-
 function Header({ placeholder }) {
     // STATE FOR REACT
     const [searchInput, setSearchInput] = useState("")
@@ -103,9 +101,7 @@ function Header({ placeholder }) {
                             rangeColors={["#FD5B61"]}
                             onChange={handleSelect}
                         />
-                    )}
-                    
-                    
+                    )}     
                     <div className="flex items-center border-b mb-4">
                         <h2 className="text-2xl flex-grow font-semibold">
                             Number of Guests

@@ -1,0 +1,61 @@
+
+
+.rdrDateRangePickerWrapper {
+    display: flex;
+    justify-content: space-between;
+  }
+  .rdrDateDisplayWrapper {
+    background: none;
+  }
+  .rdrDateDisplayItem {
+    border-radius: 99px;
+    background-color: var(--light);
+  }
+  .rdrDefinedRangesWrapper {
+    border: none;
+    border-radius: 1rem;
+  }
+  .rdrCalendarWrapper {
+    background: none;
+    color: var(--dark);
+  }
+  .rdrStaticRange {
+    border: none;
+    background: none;
+  }
+  .rdrDefinedRangesWrapper {
+    margin-right: 1.5rem;
+    padding-top: 0.75rem;
+    background: var(--light);
+  }
+  .rdrDayNumber span {
+    color: var(--dark);
+  }
+  .rdrDayPassive .rdrDayNumber span {
+    color: var(--dark);
+    opacity: 0.33;
+  }
+  .rdrDayToday .rdrDayNumber span:after {
+    background: var(--red);
+  }
+
+  @media (max-width: 36rem) {
+    .rdrCalendarWrapper {
+      font-size: 11px;
+    }
+  }
+  @media (min-width: 48rem) {
+    .rdrDefinedRangesWrapper {
+      font-size: 16px;
+    }
+    .rdrCalendarWrapper {
+      font-size: 16px;
+    }
+  }
+
+  @media (min-width: 36rem) and (max-width: 48rem) {
+    .rdrCalendarWrapper {
+      margin: 0 auto;
+    }
+  }
+
