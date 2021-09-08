@@ -1,8 +1,9 @@
 import Image from "next/image";
 import { GlobeAltIcon, MenuIcon, UserCircleIcon, UsersIcon, SearchIcon } from '@heroicons/react/solid'
 import { useState } from "react"
-import { DateRangePicker } from 'react-date-range';
+import { DateRange, DateRangePicker } from 'react-date-range';
 import { useRouter } from "next/dist/client/router";
+import { useMediaQuery } from "@react-hook/media-query";
 
 import 'react-date-range/dist/styles.css'; // main style file
 import 'react-date-range/dist/theme/default.css'; // theme css file
@@ -41,10 +42,12 @@ function Header({ placeholder }) {
     const selectionRange = {
         startDate: startDate,
         endDate: endDate,
-        key: "selection"
+        key: "selection",
+        minDate: new Date()
     }
 
-
+    //listen to small screen change for date picker
+    const isSmallScreen = useMediaQuery("(max-width: 36rem)");
 
     return (
         <header className="sticky top-0 z-50 grid grid-cols-3 bg-white shadow-md py-5 px-5 md:px-10">
@@ -68,7 +71,8 @@ function Header({ placeholder }) {
                     placeholder={placeholder || "Start your search"}
                 />
                 <SearchIcon 
-                    className="hidden md:inline-flex h-8 bg-red-400 text-white rounded-full p-2 cursor-pointer md:mx-2" 
+                    className="hidden md:inline-flex h-8 bg-red-400 text-white rounded-full p-2 cursor-pointer md:mx-2"
+                    onClick={search} 
                 />
             </div>
 
@@ -85,12 +89,23 @@ function Header({ placeholder }) {
             {/* Date picker range */}
             {searchInput && (
                 <div className="flex flex-col col-span-3 mx-auto mt-5">
-                    <DateRangePicker 
-                        ranges={[selectionRange]}
-                        minDate={new Date()}
-                        rangeColors={["#FD5B61"]}
-                        onChange={handleSelect}
-                    />
+                    {isSmallScreen ? (
+                        <DateRange 
+                            ranges={[selectionRange]}
+                            minDate={new Date()}
+                            rangeColors={["#FD5B61"]}
+                            onChange={handleSelect}
+                        />
+                    ) : (
+                        <DateRangePicker 
+                            ranges={[selectionRange]}
+                            minDate={new Date()}
+                            rangeColors={["#FD5B61"]}
+                            onChange={handleSelect}
+                        />
+                    )}
+                    
+                    
                     <div className="flex items-center border-b mb-4">
                         <h2 className="text-2xl flex-grow font-semibold">
                             Number of Guests
