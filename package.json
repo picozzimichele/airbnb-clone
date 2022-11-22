@@ -2,13 +2,14 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "SET NODE_OPTIONS=--openssl-legacy-provider && react-scripts build",
     "start": "next start"
   },
   "dependencies": {
     "@badrap/bar-of-progress": "^0.1.2",
     "@heroicons/react": "^1.0.4",
     "@react-hook/media-query": "^1.1.1",
+    "cross-env": "^7.0.3",
     "date-fns": "^2.23.0",
     "feather-icons": "^4.28.0",
     "geolib": "^3.3.1",
