@@ -1,8 +1,8 @@
 {
   "private": true,
   "scripts": {
-    "dev": "next dev",
-    "build": "SET NODE_OPTIONS=--openssl-legacy-provider && react-scripts build",
+    "dev": "NODE_OPTIONS=--openssl-legacy-provider && next dev",
+    "build": "NODE_OPTIONS=--openssl-legacy-provider && next build && next export",
     "start": "next start"
   },
   "dependencies": {
