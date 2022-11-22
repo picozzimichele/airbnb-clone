@@ -2,6 +2,9 @@ import ReactMapGL, { Marker, Popup } from 'react-map-gl';
 import { useState } from "react";
 import { getCenter } from 'geolib';
 import { LocationMarkerIcon } from '@heroicons/react/outline'
+import Image from "next/image"
+import styled from "styled-components";
+
 
 function Map({ searchResults }) {
 
@@ -20,7 +23,7 @@ const center = getCenter(coordinates)
 
 const [viewport, setViewport] = useState({
     width: "100%",
-    height: "100%",
+    height: "40%",
     latitude: center.latitude,
     longitude: center.longitude,
     zoom: 11
@@ -33,7 +36,7 @@ const [viewport, setViewport] = useState({
             {...viewport}
             onViewportChange={(nextViewport) => setViewport(nextViewport)}
         >
-            {searchResults.map(result => (
+            {searchResults.map((result, index) => (
                 <div key={result.long}>
                     <Marker
                         longitude={result.long}
@@ -48,16 +51,19 @@ const [viewport, setViewport] = useState({
 
                     {/* Popup to be shown once we click on the marker */}
                     {selectedLocation.long === result.long ? (
-                        <Popup
-                            onClose={() => setSelectedLocation({})}
-                            closeOnClick={true}
-                            latitude={result.lat}
-                            longitude={result.long}
-                        >
-                            <div>
-                                {result.title}
-                            </div>
-                        </Popup>
+                            <Popup 
+                                onClose={() => setSelectedLocation({})}
+                                closeOnClick={true}
+                                latitude={result.lat}
+                                longitude={result.long}
+                            >
+                                <div>
+                                    <img src={result.img} />
+                                    <h5>{result.title}</h5>
+                                    <h4>{result.price}</h4>
+                                </div>
+                                    
+                            </Popup>
                     ) : (
                         false
                     )}
@@ -68,3 +74,4 @@ const [viewport, setViewport] = useState({
 }
 
 export default Map
+

@@ -5,6 +5,7 @@ import SmallCard from '../components/SmallCard';
 import MediumCard from '../components/MediumCard';
 import LargeCard from '../components/LargeCard';
 import Footer from '../components/Footer';
+const https = require('https');
 
 export default function Home({ exploreData, cardsData }) {
   return (
@@ -12,7 +13,6 @@ export default function Home({ exploreData, cardsData }) {
       <Head>
         <title>Michele's Airbnb</title>
         <link rel="icon" href="/favicon.ico" />
-        <script src="path/to/dist/feather.js"></script>
       </Head>
 
       <Header />
@@ -63,12 +63,15 @@ export default function Home({ exploreData, cardsData }) {
 }
 
 export async function getStaticProps() {
-  const exploreData = await fetch('https://links.papareact.com/pyp')
+  const agent = new https.Agent({
+  rejectUnauthorized: false
+});
+  const exploreData = await fetch('https://links.papareact.com/pyp', {agent})
   .then(
     (res) => res.json()
   );
 
-  const cardsData = await fetch('https://links.papareact.com/zp1')
+  const cardsData = await fetch('https://links.papareact.com/zp1', {agent})
   .then((res) => res.json()); 
 
   return {
